@@ -1,5 +1,6 @@
 FROM ibmcom/ace-server:latest
 COPY bars /home/aceuser/bars
+USER 1000 
 RUN export LICENSE="accept" \
     && source /opt/ibm/ace-11/server/bin/mqsiprofile \
     && mqsibar -a bars/Integration.bar -w /home/aceuser/ace-server \
