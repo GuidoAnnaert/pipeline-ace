@@ -1,5 +1,4 @@
 FROM ibmcom/ace-server:latest
-USER 999
 COPY bars /home/aceuser/bars
 RUN export LICENSE="accept" \
     && source /opt/ibm/ace-11/server/bin/mqsiprofile \
