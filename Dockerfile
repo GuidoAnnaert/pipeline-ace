@@ -4,4 +4,8 @@ RUN export LICENSE="accept" \
     && cd /opt/ibm/ace-12/server/bin/ \
     && source ./mqsiprofile \
     && mqsibar -a /home/aceuser/bars/PingService.bar -c -w /home/aceuser/ace-server \
-   
+	&& find /home/aceuser/ace-server/run -type f -printf "%f\n" \
+
+
+# Set user to prevent container running as root by default
+USER 1000
