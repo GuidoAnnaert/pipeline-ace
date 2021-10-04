@@ -1,9 +1,25 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
+  creationTimestamp: '2021-09-28T15:42:50Z'
+  generation: 1
+  managedFields:
+    - apiVersion: tekton.dev/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          .: {}
+          'f:params': {}
+          'f:type': {}
+      manager: Mozilla
+      operation: Update
+      time: '2021-09-28T15:42:50Z'
   name: acecicd-res-image
+  namespace: default
+  resourceVersion: '155396'
+  uid: f269ad67-f3c4-468f-9d7e-c0ce9283b978
 spec:
-  type: image
   params:
-  - name: url
-    value: image-registry.openshift-image-registry.svc:5000
+    - name: url
+      value: 'image-registry.openshift-image-registry.svc:5000'
+  type: image

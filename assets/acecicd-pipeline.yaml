@@ -1,45 +1,66 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
+  creationTimestamp: '2021-09-28T15:48:06Z'
+  generation: 1
+  managedFields:
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          .: {}
+          'f:params': {}
+          'f:resources': {}
+          'f:tasks': {}
+      manager: Mozilla
+      operation: Update
+      time: '2021-09-28T15:48:06Z'
   name: acecicd-pipeline
+  namespace: default
+  resourceVersion: '160568'
+  uid: 4bd5764f-7351-4771-93d4-54d0c0804ebc
 spec:
-  resources:
-  - name: git-repo
-    type: git
-  - name: image
-    type: image
   params:
-  - name: namespace
-    default: ace
-    description: namespace used to publish the integration server
+    - default: default
+      description: namespace used to publish the integration server
+      name: namespace
+      type: string
+  resources:
+    - name: git-repo
+      type: git
+    - name: image
+      type: image
   tasks:
-  - name: build-image
-    taskRef:
-      name: task-dockerf-build-push
-    resources:
-      inputs:
-      - name: source
-        resource: git-repo
-      - name: image
-        resource: image
-    params:
-    - name: namespace
-      value: $(params.namespace)
-  - name: deploy-image
-    taskRef:
-      name: task-deploy-aceimg
-    runAfter:
-      - build-image
-    resources:
-      inputs:
-      - name: image
-        resource: image
-    params:
-    - name: namespace
-      value: $(params.namespace)
-    - name: integrationServerName
-      value: $(tasks.build-image.results.image_name)-$(tasks.build-image.results.image_tag)
-    - name: image_name
-      value: $(tasks.build-image.results.image_name)
-    - name: image_tag
-      value: $(tasks.build-image.results.image_tag)
+    - name: build-image
+      params:
+        - name: namespace
+          value: $(params.namespace)
+      resources:
+        inputs:
+          - name: source
+            resource: git-repo
+          - name: image
+            resource: image
+      taskRef:
+        kind: Task
+        name: task-dockerf-build-push
+    - name: deploy-image
+      params:
+        - name: namespace
+          value: $(params.namespace)
+        - name: integrationServerName
+          value: >-
+            $(tasks.build-image.results.image_name)-$(tasks.build-image.results.image_tag)
+        - name: image_name
+          value: $(tasks.build-image.results.image_name)
+        - name: image_tag
+          value: $(tasks.build-image.results.image_tag)
+      resources:
+        inputs:
+          - name: image
+            resource: image
+      runAfter:
+        - build-image
+      taskRef:
+        kind: Task
+        name: task-deploy-aceimg

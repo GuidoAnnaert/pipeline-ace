@@ -1,31 +1,57 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
+  creationTimestamp: '2021-09-28T15:46:59Z'
+  generation: 4
+  managedFields:
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          .: {}
+          'f:params': {}
+          'f:resources':
+            .: {}
+            'f:inputs': {}
+          'f:steps': {}
+      manager: Mozilla
+      operation: Update
+      time: '2021-09-28T15:46:59Z'
   name: task-deploy-aceimg
+  namespace: default
+  resourceVersion: '650269'
+  uid: 6da1ab07-e3f3-47c6-9b91-dd09432cf14b
 spec:
   params:
-    - default: ace
+    - default: default
       description: release namespace
       name: namespace
       type: string
-    - name: integrationServerName
-      description: name of the integration server
-    - name: image_tag
-      description: image tag name
-    - name: image_name
-      description: image name
-    - name: license
+    - description: name of the integration server
+      name: integrationServerName
+      type: string
+    - description: image tag name
+      name: image_tag
+      type: string
+    - description: image name
+      name: image_name
+      type: string
+    - default: L-APEH-C49KZH
       description: license number
-      default: L-APEH-BPUCJK
-    - name: tracing_ns
-      default: tracing
+      name: license
+      type: string
+    - default: tracing
       description: namespace where OD is installed
-    - name: tracing_enabled
-      default: "true"
+      name: tracing_ns
+      type: string
+    - default: 'false'
       description: enable tracing
-    - name: ace_version
-      default: 11.0.0.10-r1
+      name: tracing_enabled
+      type: string
+    - default: 12.0.1.0-r4
       description: fully qualified ace version
+      name: ace_version
+      type: string
   resources:
     inputs:
       - name: image

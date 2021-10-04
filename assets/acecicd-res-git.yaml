@@ -1,11 +1,27 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
+  creationTimestamp: '2021-09-28T15:42:26Z'
+  generation: 2
+  managedFields:
+    - apiVersion: tekton.dev/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          .: {}
+          'f:params': {}
+          'f:type': {}
+      manager: Mozilla
+      operation: Update
+      time: '2021-09-28T15:42:26Z'
   name: acecicd-res-git
+  namespace: default
+  resourceVersion: '227844'
+  uid: 71531cf6-c17b-4a2a-b7f0-5f9b52239701
 spec:
-  type: git
   params:
-  - name: revision
-    value: main
-  - name: url
-    value: https://github.com/GuidoAnnaert/pipeline-ace.git
+    - name: revision
+      value: main
+    - name: url
+      value: 'https://github.com/GuidoAnnaert/pipeline-ace.git'
+  type: git
