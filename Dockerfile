@@ -5,7 +5,3 @@ RUN export LICENSE="accept" \
     && source ./mqsiprofile \
     && mqsibar -a /home/aceuser/bars/PingService.bar -c -w /home/aceuser/ace-server \
 	&& find /home/aceuser/ace-server/run -type f  \
-
-
-# Set user to prevent container running as root by default
-USER 1000
