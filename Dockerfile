@@ -1,5 +1,4 @@
 FROM gannaert/ace12-server-only:latest
-USER 1000
 COPY bars /home/aceuser/bars
 COPY bars /home/aceuser/initial-config/bars/
 RUN export LICENSE="accept" \
