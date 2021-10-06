@@ -1,6 +1,7 @@
 FROM gannaert/ace12-server-only:latest
 COPY bars /home/aceuser/bars
 COPY bars /home/aceuser/initial-config/bars/
+USER 1000
 RUN export LICENSE="accept" \
     && cd /opt/ibm/ace-12/server/bin/ \
     && source ./mqsiprofile \
