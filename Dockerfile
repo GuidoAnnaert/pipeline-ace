@@ -1,4 +1,4 @@
-FROM gannaert/ace12-server-only:latest
+FROM gannaert/ace12-server-only:1
 USER root
 COPY bars /home/aceuser/bars
 RUN  chmod -R ugo+rwx /home/aceuser
